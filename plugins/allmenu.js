@@ -44,15 +44,15 @@ ${menuText}
 `.trim();
 
         await conn.sendMessage(m.chat, {
-            image: { url: "https://files.catbox.moe/prkkzj.png" },
+            image: { url: "https://files.catbox.moe/ebx6iq.jpg" },
             caption,
             contextInfo: {
                 forwardingScore: 999,
                 isForwarded: true,
                 mentionedJid: [m.sender],
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363348739987203@newsletter",
-                    newsletterName: "𝘼𝙧𝙨𝙡𝙖𝙣-𝙈𝘿 𝙈𝙞𝙣𝙞 𝙑²",
+                    newsletterJid: "120363411030640530@newsletter",
+                    newsletterName: "POWERD BY NEXTYxALYY",
                     serverMessageId: 2,
                 },
             },

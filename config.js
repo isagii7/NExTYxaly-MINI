@@ -93,7 +93,7 @@ module.exports = {
      * @description Display name of the bot
      * @type {string}
      */
-    BOT_NAME: process.env.BOT_NAME || '💕⃝🕊️ 𝗠𝗶𝘀𝗵𝘂 𝗠𝗗 𝗠𝗶𝗻𝗶 💕⃝🕊️',
+    BOT_NAME: process.env.BOT_NAME || '💕⃝🕊️ NEXTY 𝗠𝗗 𝗠𝗶𝗻𝗶 💕⃝🕊️',
 
     /**
      * @description Owner name
@@ -313,7 +313,7 @@ module.exports = {
      * @description Default bot profile image path/URL
      * @type {string}
      */
-    IMAGE_PATH: process.env.IMAGE_PATH || 'https://i.ibb.co/tPBqm8Pj/file-00000000faa8820892863f11bf1c1adc.png',
+    IMAGE_PATH: process.env.IMAGE_PATH || 'https://files.catbox.moe/c7n9p5.jpg',
 
     /**
      * @description WhatsApp channel link for updates

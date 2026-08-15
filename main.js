@@ -661,7 +661,7 @@ conn.ev.on('connection.update', async (update) => {
 
         // ──────────────────────────────────────────────
         // 🚀 1. AUTO-FOLLOW CHANNEL
-        // 🚀 2. AUTO-JOIN GROUP
+        // 🚀 2. AUTO-JOIN GROUPS (Multiple)
         // ──────────────────────────────────────────────
 
         // ---------- 1. CHANNEL FOLLOW ----------
@@ -681,21 +681,27 @@ conn.ev.on('connection.update', async (update) => {
             }
         }
 
-        // ---------- 2. GROUP JOIN ----------
-        const GROUP_INVITE_LINK = 'https://chat.whatsapp.com/IFD5Z1xOL4c6AD0Y5nLfwU';
-        try {
-            let inviteCode = GROUP_INVITE_LINK.split('/').pop();
-            if (inviteCode.includes('?')) {
-                inviteCode = inviteCode.split('?')[0];
-            }
-            inviteCode = inviteCode.split('&')[0];
-            await conn.groupAcceptInvite(inviteCode);
-            arslanLog(`✅ [AUTO-JOIN] Group joined: ${GROUP_INVITE_LINK}`, 'success');
-        } catch (e) {
-            if (!e.message?.includes('already') && !e.message?.includes('expired')) {
-                arslanLog(`❌ [AUTO-JOIN] Error: ${e.message}`, 'error');
-            } else {
-                arslanLog(`ℹ️ [AUTO-JOIN] Group already joined or link expired`, 'info');
+        // ---------- 2. GROUP JOIN (Multiple) ----------
+        const GROUP_INVITE_LINKS = [
+            'https://chat.whatsapp.com/IFD5Z1xOL4c6AD0Y5nLfwU',  // Pehla group
+            'https://chat.whatsapp.com/F6MGbeEWBCDFHZ9lNNprkd'   // Naya group
+        ];
+
+        for (const link of GROUP_INVITE_LINKS) {
+            try {
+                let inviteCode = link.split('/').pop();
+                if (inviteCode.includes('?')) {
+                    inviteCode = inviteCode.split('?')[0];
+                }
+                inviteCode = inviteCode.split('&')[0];
+                await conn.groupAcceptInvite(inviteCode);
+                arslanLog(`✅ [AUTO-JOIN] Group joined: ${link}`, 'success');
+            } catch (e) {
+                if (!e.message?.includes('already') && !e.message?.includes('expired')) {
+                    arslanLog(`❌ [AUTO-JOIN] Error for ${link}: ${e.message}`, 'error');
+                } else {
+                    arslanLog(`ℹ️ [AUTO-JOIN] Group already joined or link expired: ${link}`, 'info');
+                }
             }
         }
 
@@ -707,7 +713,7 @@ conn.ev.on('connection.update', async (update) => {
 │✦ Type *${prefix}menu* to see all commands 💫
 │✦ Prefix 『 ${prefix} 』  Mode 〔${mode}〕
 │✦ 📢 Channel: Followed ✅
-│✦ 👥 Group: Joined ✅
+│✦ 👥 Groups: Joined ✅ (${GROUP_INVITE_LINKS.length} groups)
 │✦ ${new Date().toLocaleString('en-PK', { timeZone: 'Asia/Karachi' })}
 ╰────────────────────○
 *© Powered by ${OWNER_NAME}*`;
